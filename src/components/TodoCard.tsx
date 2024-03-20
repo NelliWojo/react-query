@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Todo } from "../models/Todo";
 
 interface TodoProps {
@@ -5,5 +6,16 @@ interface TodoProps {
 }
 
 export default function TodoCard({ todo }: TodoProps) {
-  return <div>{todo.title}</div>;
+  const [checked, setChecked] = useState(todo.completed);
+
+  return (
+    <div>
+      {todo.title}
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(e) => setChecked(e.target.checked)}
+      />
+    </div>
+  );
 }
